@@ -1,0 +1,29 @@
+<div class="calendar-view-container border rounded p-3 bg-white">
+
+<div class="calendar-view-container border rounded p-3 bg-white">
+  <div class="calendar-header mb-3">
+    <h4 class="mb-0">
+      {{ displayedDate | date:'EEE, d' }}
+    </h4>
+  </div>
+</div>
+
+  <div class="calendar-body d-flex">
+
+    <div class="time-column">
+      <div *ngFor="let hour of hours" class="time-label">
+        <small>{{ hour }}</small>
+      </div>
+    </div>
+
+    <div class="grid-column flex-grow-1 position-relative">
+      <div *ngFor="let hour of hours" class="hour-slot"></div>
+
+      <div class="event-placeholder shadow-sm">
+        <strong>Reunião de Alinhamento</strong>
+        <p class="mb-0 small">Escritório</p>
+      </div>
+    </div>
+
+  </div>
+</div>

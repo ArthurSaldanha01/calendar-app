@@ -1,0 +1,40 @@
+<nav class="container-fluid bg-light py-2 px-3 border-bottom">
+  <div class="row align-items-center">
+
+    <div class="col-auto">
+      <button class="btn btn-outline-secondary">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+
+    <div class="col-auto">
+  <button class="btn btn-primary" (click)="goToToday()">Hoje</button>
+</div>
+
+<div class="col-auto">
+  <button class="btn btn-outline-secondary me-1" (click)="goToPreviousDay()">
+    <i class="bi bi-chevron-left"></i>
+  </button>
+  <button class="btn btn-outline-secondary" (click)="goToNextDay()">
+    <i class="bi bi-chevron-right"></i>
+  </button>
+</div>
+
+<div class="col">
+  <div class="text-center fw-bold">
+    {{ displayedDate | date:'EEEE, d \'de\' MMMM \'de\' yyyy' }}
+  </div>
+</div>
+
+    <div class="col-auto">
+      <input type="text" class="form-control" placeholder="Buscar evento ou tarefa">
+    </div>
+
+    <div class="col-auto">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="switchTipo">
+        <label class="form-check-label" for="switchTipo">Tarefa/Eventos</label>
+      </div>
+    </div>
+  </div>
+</nav>
