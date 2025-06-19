@@ -1,0 +1,9 @@
+.calendar-wrapper {
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.calendar-wrapper.expanded {
+  padding-left: 0;
+  width: 100%;
+}

@@ -1,6 +1,7 @@
 .calendar-body {
   height: 75vh;
   overflow-y: auto;
+  padding-top: 20px;
 }
 
 .time-column {

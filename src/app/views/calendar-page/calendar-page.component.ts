@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CalendarViewComponent } from '../calendar-view/calendar-view.component';
 import { CreateEventComponent } from '../create-event/create-event.component';
 import { CreateTaskComponent } from '../create-task/create-task.component';
@@ -10,5 +10,5 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
   styleUrl: './calendar-page.component.css'
 })
 export class CalendarPageComponent {
-
+  @Input() sidebarVisible: boolean = true;
 }
