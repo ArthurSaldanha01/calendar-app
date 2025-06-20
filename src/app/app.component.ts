@@ -1,18 +1,18 @@
+// app.component.ts
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./views/header/header.component";
-import { SidebarComponent } from "./views/sidebar/sidebar.component";
-import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './views/header/header.component';
+import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { CalendarPageComponent } from './views/calendar-page/calendar-page.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [HeaderComponent, SidebarComponent, CommonModule, CalendarPageComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'calendar-app';
   sidebarVisible = true;
 
   toggleSidebar(): void {

@@ -1,14 +1,17 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CalendarViewComponent } from '../calendar-view/calendar-view.component';
-import { CreateEventComponent } from '../create-event/create-event.component';
-import { CreateTaskComponent } from '../create-task/create-task.component';
 
 @Component({
   selector: 'app-calendar-page',
-  imports: [CalendarViewComponent, CreateEventComponent, CreateTaskComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarViewComponent
+  ],
   templateUrl: './calendar-page.component.html',
-  styleUrl: './calendar-page.component.css'
+  styleUrls: ['./calendar-page.component.css']
 })
 export class CalendarPageComponent {
-  @Input() sidebarVisible: boolean = true;
+  @Input() sidebarVisible = true;
 }

@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+ngb-datepicker {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+ngb-datepicker .ngb-dp-month {
+  display: block !important;
+  width: 100% !important;
+}
+
+ngb-datepicker .ngb-dp-weekday,
+ngb-datepicker .ngb-dp-day {
+  width: calc(100% / 7) !important;
+}
