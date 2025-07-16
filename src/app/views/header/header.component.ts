@@ -1,11 +1,15 @@
-import { Component, OnDestroy, OnInit, EventEmitter, Output, output } from '@angular/core';
+import { Component, OnDestroy, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DateService } from '../../shared/date.service';
 import { CommonModule } from '@angular/common';
+import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MinhasTarefasComponent } from '../../views/minhas-tarefas/minhas-tarefas.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, NgbModalModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -15,7 +19,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private dateSubscription!: Subscription;
   @Output() toggleSidebar = new EventEmitter<void>();
 
-  constructor(private dateService: DateService) {}
+  @ViewChild('switchTipo', { static: false }) switchTipo!: ElementRef<HTMLInputElement>;
+  searchTerm: string = '';
+  @Output() search = new EventEmitter<string>();
+
+  constructor(
+    private dateService: DateService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.dateSubscription = this.dateService.selectedDate$.subscribe(date => {
@@ -39,7 +50,35 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.dateService.goToToday();
   }
 
-  onToggleSidebar(): void{
+  onToggleSidebar(): void {
     this.toggleSidebar.emit();
+  }
+
+  openMinhasTarefas() {
+    const modalRef = this.modalService.open(MinhasTarefasComponent, {
+      size: 'lg',
+      backdrop: 'static'
+    });
+
+    modalRef.componentInstance.fechar.subscribe(() => {
+      modalRef.close();
+
+      setTimeout(() => {
+        if (this.switchTipo) {
+          this.switchTipo.nativeElement.checked = false;
+        }
+      });
+    });
+  }
+
+  onSwitchTipo(event: any) {
+    if (event.target.checked) {
+      this.openMinhasTarefas();
+    }
+  }
+
+  onSearchChange(term: string) {
+    this.searchTerm = term;
+    this.search.emit(term);
   }
 }

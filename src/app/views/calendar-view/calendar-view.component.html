@@ -1,15 +1,11 @@
 <div class="calendar-view-container border rounded p-3 bg-white">
-
-<div class="calendar-view-container border rounded p-3 bg-white">
   <div class="calendar-header">
     <h4 class="mb-0">
       {{ displayedDate | date:'EEE, d' }}
     </h4>
   </div>
-</div>
 
   <div class="calendar-body d-flex">
-
     <div class="time-column">
       <div *ngFor="let hour of hours" class="time-label">
         <small>{{ hour }}</small>
@@ -18,12 +14,18 @@
 
     <div class="grid-column flex-grow-1 position-relative">
       <div *ngFor="let hour of hours" class="hour-slot"></div>
-
-      <div class="event-placeholder shadow-sm">
-        <strong>Reunião de Alinhamento</strong>
-        <p class="mb-0 small">Escritório</p>
+      <div
+        *ngFor="let item of filteredItems"
+        class="event-placeholder shadow-sm"
+        [ngStyle]="getEventStyle(item)"
+        (click)="abrirModalDetalhe(item)"
+        [class.concluida]="item.completed && item.type === 'task'"
+        style="cursor: pointer;"
+      >
+        <strong>{{ item.title }}</strong>
+        <span *ngIf="item.completed && item.type === 'task'" class="badge bg-success ms-2">Concluída</span>
+        <p class="mb-0 small" *ngIf="item.description">{{ item.description }}</p>
       </div>
     </div>
-
   </div>
 </div>

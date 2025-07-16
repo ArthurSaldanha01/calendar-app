@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ item.type === 'task' ? 'Detalhes da Tarefa' : 'Detalhes do Evento' }}</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+
+<div class="modal-body" *ngIf="item">
+  <div class="mb-2"><strong>Título:</strong> {{ item.title }}</div>
+  <div *ngIf="item.description"><strong>Descrição:</strong> {{ item.description }}</div>
+  <div class="mb-2">
+    <strong>Data:</strong> {{ item.date | date:'dd/MM/yyyy' }}<br>
+    <strong>Início:</strong> {{ item.start_time }}<br>
+    <strong *ngIf="item.end_time">Término: {{ item.end_time }}</strong>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button *ngIf="item?.type === 'task'" class="btn btn-success" (click)="concluir()">Concluir</button>
+  <button class="btn btn-danger" (click)="excluir()">Excluir</button>
+  <button class="btn btn-primary" (click)="editar()">Editar</button>
+  <button class="btn btn-secondary" (click)="close()">Fechar</button>
+</div>

@@ -1,4 +1,3 @@
-// app.component.ts
 import { Component } from '@angular/core';
 import { HeaderComponent } from './views/header/header.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
@@ -14,8 +13,13 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   sidebarVisible = true;
+  searchTerm = '';
 
   toggleSidebar(): void {
     this.sidebarVisible = !this.sidebarVisible;
+  }
+
+  onSearch(term: string) {
+    this.searchTerm = term;
   }
 }

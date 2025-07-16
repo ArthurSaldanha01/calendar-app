@@ -1,35 +1,45 @@
+<!-- edit-item.component.html -->
 <div class="modal-header">
-  <h5 class="modal-title">Criar Evento</h5>
+  <h5 class="modal-title">
+    {{ type === 'task' ? 'Editar Tarefa' : 'Editar Evento' }}
+  </h5>
   <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 </div>
 
 <div class="modal-body">
-  <div class="mb-3 text-center">
-    <button class="btn btn-outline-secondary" (click)="toggleToTask()">
-      Mudar para Tarefa
-    </button>
-  </div>
-
+  <!-- Título -->
   <div class="mb-3">
     <label class="form-label">Título</label>
     <input
+      type="text"
       class="form-control"
       [(ngModel)]="title"
-      placeholder="Título do evento"
+      placeholder="Digite o título"
     />
   </div>
 
+  <!-- Descrição só para tarefa -->
+  <div *ngIf="type === 'task'" class="mb-3">
+    <label class="form-label">Descrição</label>
+    <textarea
+      class="form-control"
+      rows="3"
+      [(ngModel)]="description"
+      placeholder="Detalhe a tarefa"
+    ></textarea>
+  </div>
+
+  <!-- Data e horários -->
   <div class="row g-3">
-    <div class="col-12 col-md-6">
+    <div class="col-6">
       <label class="form-label">Data</label>
       <ngb-datepicker
+        class="w-100"
         [(ngModel)]="dateModel"
         [navigation]="'select'"
-        class="w-100"
       ></ngb-datepicker>
     </div>
-
-    <div class="col-6 col-md-3">
+    <div class="col-3">
       <label class="form-label">Hora Início</label>
       <input
         type="time"
@@ -37,8 +47,7 @@
         [(ngModel)]="startTime"
       />
     </div>
-
-    <div class="col-6 col-md-3">
+    <div class="col-3" *ngIf="type === 'event'">
       <label class="form-label">Hora Fim</label>
       <input
         type="time"
@@ -49,11 +58,16 @@
   </div>
 </div>
 
-<div class="modal-footer flex-column flex-sm-row gap-2">
-  <button class="btn btn-secondary w-100 w-sm-auto" (click)="close()">Fechar</button>
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="close()">Fechar</button>
   <button
-    class="btn btn-primary w-100 w-sm-auto"
-    [disabled]="!title || !dateModel || !startTime || !endTime"
+    class="btn btn-primary"
+    [disabled]="
+      !title ||
+      !dateModel ||
+      !startTime ||
+      (type === 'event' && !endTime)
+    "
     (click)="save()"
   >
     Salvar

@@ -1,0 +1,11 @@
+@media (max-width: 575.98px) {
+  .header-search {
+    margin-top: .5rem;
+  }
+  .header-search .form-control {
+    font-size: .85rem;
+  }
+  .form-switch {
+    margin-top: .5rem;
+  }
+}

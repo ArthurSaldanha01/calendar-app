@@ -1,0 +1,20 @@
+<div class="minhas-tarefas-container border rounded p-3 bg-white position-relative">
+
+  <button class="btn-close position-absolute top-0 end-0 m-2" aria-label="Fechar" (click)="onFechar()"></button>
+
+  <h4 class="mb-3">Minhas Tarefas de Hoje</h4>
+
+  <div *ngIf="carregando" class="text-muted">Carregando...</div>
+
+  <div *ngIf="!carregando && tarefas.length === 0" class="text-muted">
+    Nenhuma tarefa cadastrada para hoje.
+  </div>
+
+  <ul class="list-group" *ngIf="tarefas.length > 0">
+    <li *ngFor="let tarefa of tarefas" class="list-group-item">
+      <strong>{{ tarefa.title }}</strong>
+      <div class="small text-muted">{{ tarefa.description }}</div>
+      <span class="badge bg-secondary" *ngIf="tarefa.start_time">{{ tarefa.start_time }}</span>
+    </li>
+  </ul>
+</div>

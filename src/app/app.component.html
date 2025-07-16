@@ -1,4 +1,8 @@
-<app-header class="fixed-top" (toggleSidebar)="toggleSidebar()"></app-header>
+<app-header
+  class="fixed-top"
+  (toggleSidebar)="toggleSidebar()"
+  (search)="onSearch($event)"
+></app-header>
 
 <div style="padding-top: 50px;">
   <div class="d-flex" style="min-height: 100vh;">
@@ -6,7 +10,10 @@
       <app-sidebar></app-sidebar>
     </div>
     <div class="main-content flex-grow-1">
-      <app-calendar-page [sidebarVisible]="sidebarVisible"></app-calendar-page>
+      <app-calendar-page
+        [sidebarVisible]="sidebarVisible"
+        [searchTerm]="searchTerm"
+      ></app-calendar-page>
     </div>
   </div>
 </div>

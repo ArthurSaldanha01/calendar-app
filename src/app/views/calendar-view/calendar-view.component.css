@@ -36,8 +36,6 @@
 
 .event-placeholder {
   position: absolute;
-  top: calc(60px * 10);
-  height: calc(60px * 1.5);
   left: 10px;
   right: 10px;
   background-color: var(--bs-primary-bg-subtle);

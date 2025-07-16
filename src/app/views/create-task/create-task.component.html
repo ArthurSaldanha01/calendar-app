@@ -41,26 +41,27 @@
         class="w-100"
       ></ngb-datepicker>
     </div>
+
     <div class="col-12 col-md-6">
-      <label for="taskTime" class="form-label">Hora</label>
+      <label for="taskStartTime" class="form-label">Hora Início</label>
       <input
-        id="taskTime"
+        id="taskStartTime"
         type="time"
         class="form-control"
-        [(ngModel)]="time"
+        [(ngModel)]="startTime"
       />
     </div>
   </div>
 </div>
 
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="close()">
+<div class="modal-footer flex-column flex-sm-row gap-2">
+  <button type="button" class="btn btn-secondary w-100 w-sm-auto" (click)="close()">
     Fechar
   </button>
   <button
     type="button"
-    class="btn btn-primary"
-    [disabled]="!title || !dateModel"
+    class="btn btn-primary w-100 w-sm-auto"
+    [disabled]="!title || !dateModel || !startTime"
     (click)="save()"
   >
     Salvar

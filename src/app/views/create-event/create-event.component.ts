@@ -9,6 +9,7 @@ import {
   NgbModalModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { CreateTaskComponent } from '../create-task/create-task.component';
+import { ItemsService, Item } from '../../services/items.service';
 
 @Component({
   selector: 'app-create-event',
@@ -24,12 +25,15 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
 })
 export class CreateEventComponent {
   title = '';
+  description = '';
   dateModel!: NgbDateStruct;
-  time = '12:00';
+  startTime = '';
+  endTime = '';
 
   constructor(
     public activeModal: NgbActiveModal,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private itemsService: ItemsService
   ) {}
 
   toggleToTask(): void {
@@ -41,14 +45,21 @@ export class CreateEventComponent {
   }
 
   save(): void {
-    const eventDate = new Date(
-      this.dateModel.year,
-      this.dateModel.month - 1,
-      this.dateModel.day,
-      +this.time.split(':')[0],
-      +this.time.split(':')[1]
-    );
-    this.activeModal.close({ title: this.title, date: eventDate });
+    const date = `${this.dateModel.year}-${this.dateModel.month.toString().padStart(2, '0')}-${this.dateModel.day.toString().padStart(2, '0')}`;
+
+    const event: Item = {
+      type: 'event',
+      title: this.title,
+      description: this.description,
+      date: date,
+      start_time: this.startTime,
+      end_time: this.endTime
+    };
+
+    this.itemsService.create(event).subscribe({
+      next: (result) => this.activeModal.close(result),
+      error: (err) => alert('Erro ao criar evento!')
+    });
   }
 
   close(): void {
