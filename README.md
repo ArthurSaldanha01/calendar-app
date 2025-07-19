@@ -1,6 +1,6 @@
 # Gerenciador de Tarefas e Eventos (Web 3)
 
-Este é um projeto Full Stack de um sistema simples para gerenciamento de tarefas e eventos. A aplicação permite criar, visualizar, atualizar e deletar itens em uma agenda.
+Este é um projeto de um sistema simples para gerenciamento de tarefas e eventos. A aplicação permite criar, visualizar, atualizar e deletar itens em uma agenda.
 
 O frontend foi construído com **Angular** e estilizado com **Bootstrap**, e o backend (API) foi desenvolvido em **Node.js** com **Express**, conectado a um banco de dados **MySQL**.
 
@@ -8,9 +8,10 @@ O frontend foi construído com **Angular** e estilizado com **Bootstrap**, e o b
 
 * **Listagem de Itens:** Visualize todos os eventos e tarefas em ordem cronológica.
 * **Filtro por Data:** Filtre os itens para visualizar a agenda de um dia específico.
-* **Criar Item:** Adicione novas tarefas, eventos ou lembretes.
+* **Criar Item:** Adicione novas tarefas e eventos.
 * **Editar Item:** Modifique informações de um item já existente.
 * **Marcar como Concluído:** Marque tarefas como finalizadas.
+* **Ver todas as Tarefas do Dia:** Visualize todas as tarefas do dia.
 * **Excluir Item:** Remova itens da agenda.
 
 ##  Tecnologias Utilizadas
