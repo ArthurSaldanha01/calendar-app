@@ -1,59 +1,114 @@
-# CalendarApp
+# Gerenciador de Tarefas e Eventos (Web 3)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+Este é um projeto Full Stack de um sistema simples para gerenciamento de tarefas e eventos. A aplicação permite criar, visualizar, atualizar e deletar itens em uma agenda.
 
-## Development server
+O frontend foi construído com **Angular** e estilizado com **Bootstrap**, e o backend (API) foi desenvolvido em **Node.js** com **Express**, conectado a um banco de dados **MySQL**.
 
-To start a local development server, run:
+##  Funcionalidades
 
-```bash
-ng serve
-```
+* **Listagem de Itens:** Visualize todos os eventos e tarefas em ordem cronológica.
+* **Filtro por Data:** Filtre os itens para visualizar a agenda de um dia específico.
+* **Criar Item:** Adicione novas tarefas, eventos ou lembretes.
+* **Editar Item:** Modifique informações de um item já existente.
+* **Marcar como Concluído:** Marque tarefas como finalizadas.
+* **Excluir Item:** Remova itens da agenda.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+##  Tecnologias Utilizadas
 
-## Code scaffolding
+* **Frontend:**
+    * [Angular](https://angular.io/)
+    * [Bootstrap](https://getbootstrap.com/)
+* **Backend:**
+    * [Node.js](https://nodejs.org/)
+    * [Express.js](https://expressjs.com/)
+    * [mysql2](https://github.com/sidorares/node-mysql2)
+* **Banco de Dados:**
+    * [MySQL](https://www.mysql.com/)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Como Executar o Projeto
 
-```bash
-ng generate component component-name
-```
+Siga os passos abaixo para configurar e rodar a aplicação em seu ambiente local.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Pré-requisitos
 
-```bash
-ng generate --help
-```
+Antes de começar, você vai precisar ter instalado em sua máquina:
+* [Node.js](https://nodejs.org/en/) (que já vem com o npm)
+* [Angular CLI](https://angular.io/cli) (`npm install -g @angular/cli`)
+* Um servidor MySQL (como XAMPP, WAMP, ou a instalação padrão do MySQL).
 
-## Building
+### 1. Configuração do Banco de Dados (MySQL)
 
-To build the project run:
+Primeiro, crie o banco de dados e a tabela que a aplicação usará.
 
-```bash
-ng build
-```
+1.  Acesse seu cliente MySQL.
+2.  Crie o banco de dados:
+    ```sql
+    CREATE DATABASE calendar_db;
+    ```
+3.  Use o banco de dados recém-criado:
+    ```sql
+    USE calendar_db;
+    ```
+4.  Crie a tabela `items` com a seguinte estrutura:
+    ```sql
+    CREATE TABLE items (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        type VARCHAR(50) NOT NULL,
+        title VARCHAR(255) NOT NULL,
+        description TEXT,
+        date DATE NOT NULL,
+        start_time TIME NOT NULL,
+        end_time TIME NULL,
+        completed BOOLEAN DEFAULT 0
+    );
+    ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 2. Configuração do Backend (API Node.js)
 
-## Running unit tests
+Agora, vamos configurar e iniciar o servidor.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1.  Clone o repositório (ou navegue até a pasta do seu backend):
+    ```bash
+    # Exemplo, se o seu backend estiver na pasta 'api'
+    cd pasta-do-backend/
+    ```
 
-```bash
-ng test
-```
+2.  Instale as dependências do Node.js:
+    ```bash
+    npm install
+    ```
 
-## Running end-to-end tests
+3.  Configure a conexão com o banco de dados. Abra o arquivo principal da API (ex: `index.js` ou `server.js`) e verifique se os dados de conexão estão corretos:
+    ```javascript
+    const db = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',       // Seu usuário do MySQL
+      password: '',       // Sua senha do MySQL
+      database: 'calendar_db'
+    });
+    ```
 
-For end-to-end (e2e) testing, run:
+4.  Inicie o servidor da API:
+    ```bash
+    node index.js
+    ```
+    O backend estará rodando em `http://localhost:3000`.
 
-```bash
-ng e2e
-```
+### 3. Configuração do Frontend (Angular)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Por fim, configure e inicie a aplicação Angular.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1.  Em um novo terminal, navegue até a pasta do seu frontend:
+    ```bash
+    # Exemplo, se o seu frontend estiver na pasta 'app'
+    cd pasta-do-frontend/
+    ```
+2.  Instale as dependências do Angular:
+    ```bash
+    npm install
+    ```
+3.  Inicie a aplicação:
+    ```bash
+    ng serve
+    ```
+4.  Abra seu navegador e acesse `http://localhost:4200/`. A aplicação deve estar funcionando e se comunicando com a API.
