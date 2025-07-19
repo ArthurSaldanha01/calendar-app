@@ -112,3 +112,7 @@ Por fim, configure e inicie a aplicação Angular.
     ng serve
     ```
 4.  Abra seu navegador e acesse `http://localhost:4200/`. A aplicação deve estar funcionando e se comunicando com a API.
+
+   ## 📄 Apresentação do Projeto
+
+**[Clique aqui para ver a apresentação em PDF](docs/apresentacao.pdf)**
